@@ -1,0 +1,45 @@
+import mutual.*
+import familia.*
+import vivienda.*
+test "Si incorporo una vivienda a la mutual tiene una cantidad de horas necesarias" {
+	
+	var unaCasa = new Casa(200,2)
+	assert.equals(unaCasa.horasNecesarias(),200)
+
+}
+
+test "Una persona valida puede responder su edad"{
+	var unaPersona = new Persona(23)
+	assert.equals(unaPersona.edad(),23)
+}
+test "Una persona mayor de edad puede trabajar una cantidad de horas en una vivienda"{
+	var unaPersona = new Persona(23)
+	var unaCasa = new Casa(200,2)
+	unaPersona.trabajar(100, unaCasa,"techo")
+	assert.equals(100,unaPersona.horasTrabajadas())
+}
+
+test "Una persona mayor de edad que trabajo en dos casas tiene una cantidad de horas igual a la suma en ambas"{
+	var unaPersona = new Persona(23)
+	var unaCasa = new Casa(200,[2])
+	var unDepto = new Depto(300,200)
+	unaPersona.trabajar(100,unaCasa,"techo")
+	unaPersona.trabajar(300,unDepto,"piso")
+	assert.equals(400,unaPersona.horasTrabajadas())
+}
+test "una familia que trabajo 201 horas esta al dia"{
+	var unaPersona = new Persona(23)
+	var otraPersona = new Persona(23)
+	var unaFamilia = new Familia(unaPersona,[otraPersona])
+	var unaCasa = new Casa(200,[2])
+	unaPersona.trabajar(201,unaCasa,"techo")
+	assert.that(unaFamilia.alDia())
+}
+test "una familia que trabajo y tiene 2 integrantes es ideal para una casa de dos hambientes"{
+	var unaPersona = new Persona(23)
+	var otraPersona = new Persona(23)
+	var unaFamilia = new Familia(unaPersona,[otraPersona])
+	var unaCasa = new Casa(200,[2])
+	unaPersona.trabajar(201,unaCasa,"techo")
+	assert.that(unaCasa.adecuadaPara(unaFamilia))
+}

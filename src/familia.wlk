@@ -46,6 +46,7 @@ class Persona {
 	constructor( ed){
 		edad = ed
 	}
+	method edad() {return edad}
 	
 	method horasTrabajadas(){ 
 		return trabajosRealizados.sum{trabajo=>trabajo.horas()}

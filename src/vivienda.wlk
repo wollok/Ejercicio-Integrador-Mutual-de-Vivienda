@@ -57,6 +57,3 @@ class Depto inherits Vivienda{
 	}
 }
 
-
-	
-}
